@@ -1,12 +1,12 @@
-GOAL:  
+*GOAL:*  
     Downloading highest quality music from https://music.youtube.com  
-REQUIREMENTS:  
+*REQUIREMENTS:*  
     python-requests  
     ffmpeg  
     Netscape HTTP Cookie File For itag 141  
-USAGE:  
+*USAGE:*  
     python __main__.py <VIDEO_ID> <ITAG>  
-CREDITS:  
+*CREDITS:*  
     youtube-dl https://github.com/ytdl-org/youtube-dl  
     pytube https://github.com/pytube/pytube  
     innertube https://github.com/tombulled/innertube  
