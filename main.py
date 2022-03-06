@@ -431,7 +431,7 @@ class Browse:
         }
         return album_track
 
-def download(player, _next, browse):
+def download(player, _next, browse=None):
     """Download"""
     title = f"{_next.title}".replace("/", "-")
     if len(_next.artist) == 1:
@@ -464,8 +464,9 @@ def main(video_id, itag):
     source = Source(video_id)
     player = Player(video_id, source, itag)
     _next = Next(video_id)
-    browse = Browse(_next)
-    download(player, _next, browse)
+    # browse = Browse(_next)
+    # download(player, _next, browse)
+    download(player, _next)
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
