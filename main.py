@@ -439,23 +439,24 @@ def download(player, _next, browse=None):
     else:
         artist = ", ".join(_next.artist[:-1]) + " & " + _next.artist[-1]
     logging.info(" Downloading Track...")
-    response = get(player.download_url)
-    open(f"{title}", "wb").write(response.content)
-    # Path(f"{_next.album_name}").mkdir(parents=True, exist_ok=True)
-    # subprocess.run([
-    #     "ffmpeg", "-y", "-i", f"{player.download_url}",
-    #     "-i", f"{player.thumbnail_url}",
-    #     "-map", "0", "-map", "1",
-    #     "-disposition:1", "attached_pic",
-    #     "-metadata", f"title={_next.title}",
-    #     "-metadata", f"artist={artist}",
-    #     "-metadata", f"album={_next.album_name}",
-    #     "-metadata", f"date={_next.year}",
-    #     "-metadata", f"track={browse.album_track_index}/{browse.album_track_count}",
-    #     "-codec", "copy", "-f", "mp4",
-    #     f"{_next.album_name}/{title}.m4a"
-    # ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
-    # logging.info(" Track Downloaded")
+    # response = get(player.download_url)
+    # open(f"{title}", "wb").write(response.content)
+    Path(f"{_next.album_name}").mkdir(parents=True, exist_ok=True)
+    subprocess.run([
+        "ffmpeg", "-y", "-i", f"{player.download_url}",
+        "-i", f"{player.thumbnail_url}",
+        "-map", "0", "-map", "1",
+        "-disposition:1", "attached_pic",
+        "-metadata", f"title={_next.title}",
+        "-metadata", f"artist={artist}",
+        "-metadata", f"album={_next.album_name}",
+        "-metadata", f"date={_next.year}",
+        "-metadata:g", f'encoder_tool=" "',
+        # "-metadata", f"track={browse.album_track_index}/{browse.album_track_count}",
+        "-codec", "copy", "-f", "mp4",
+        f"{_next.album_name}/{title}.m4a"
+    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+    logging.info(" Track Downloaded")
 
 def main(video_id, itag):
     """Main"""
