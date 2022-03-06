@@ -451,7 +451,6 @@ def download(player, _next, browse=None):
         "-metadata", f"artist={artist}",
         "-metadata", f"album={_next.album_name}",
         "-metadata", f"date={_next.year}",
-        "-metadata:g", f'encoder_tool=" "',
         # "-metadata", f"track={browse.album_track_index}/{browse.album_track_count}",
         "-codec", "copy", "-f", "mp4",
         f"{_next.album_name}/{title}.m4a"
